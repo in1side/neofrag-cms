@@ -95,7 +95,7 @@ class m_access_c_admin_ajax extends Controller_Module
 	
 	public function users($action, $title, $icon, $module_name, $id)
 	{
-		$this->load->library('table')
+		$this->table
 			->add_columns(array(
 				array(
 					'title'   => $this('member'),

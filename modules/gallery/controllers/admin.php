@@ -22,7 +22,7 @@ class m_gallery_c_admin extends Controller_Module
 {
 	public function index($gallery)
 	{
-		$this->load->library('table');
+		$this->table;
 		
 		$gallery = $this->table
 						->add_columns(array(
@@ -148,7 +148,7 @@ class m_gallery_c_admin extends Controller_Module
 	public function add()
 	{
 		$this	->subtitle($this('add_album'))
-				->load->library('form')
+				->form
 				->add_rules('album', array(
 					'categories' => $this->model()->get_categories_list(),
 				))
@@ -184,7 +184,7 @@ class m_gallery_c_admin extends Controller_Module
 				->js('preview');
 		
 		$form_album = $this	->subtitle($title)
-							->load->library('form')
+							->form
 							->add_rules('album', array(
 								'title'       => $title,
 								'category_id' => $category_id,
@@ -225,7 +225,7 @@ class m_gallery_c_admin extends Controller_Module
 							->add_submit($this('add_image'))
 							->save();
 							
-		$gallery_table = $this->load->library('table')
+		$gallery_table = $this->table
 									->add_columns(array(
 										array(
 											'content' => function($data, $loader){
@@ -337,7 +337,7 @@ class m_gallery_c_admin extends Controller_Module
 	{
 		$this	->title($this('delete_album_title'))
 				->subtitle($title)
-				->load->library('form')
+				->form
 				->confirm_deletion($this('delete_confirmation'), $this('delete_album_message', $title));
 
 		if ($this->form->is_valid())
@@ -353,7 +353,7 @@ class m_gallery_c_admin extends Controller_Module
 	public function _categories_add()
 	{
 		$this	->subtitle($this('add_category'))
-				->load->library('form')
+				->form
 				->add_rules('categories')
 				->add_back('admin/gallery.html')
 				->add_submit($this('add'));
@@ -379,7 +379,7 @@ class m_gallery_c_admin extends Controller_Module
 	public function _categories_edit($category_id, $name, $title, $image_id, $icon_id)
 	{
 		$this	->subtitle($this('category_', $title))
-				->load->library('form')
+				->form
 				->add_rules('categories', array(
 					'title' => $title,
 					'image' => $image_id,
@@ -411,7 +411,7 @@ class m_gallery_c_admin extends Controller_Module
 	{
 		$this	->title($this('delete_category_title'))
 				->subtitle($title)
-				->load->library('form')
+				->form
 				->confirm_deletion($this('delete_confirmation'), $this('delete_category_message', $title));
 				
 		if ($this->form->is_valid())
@@ -432,7 +432,7 @@ class m_gallery_c_admin extends Controller_Module
 				->js('preview');
 		
 		$this	->subtitle($this('image_', $title))
-				->load->library('form')
+				->form
 				->add_rules('image', array(
 					'image_id'    => $image_id,
 					'image'       => $thumbnail_file_id,
@@ -479,7 +479,7 @@ class m_gallery_c_admin extends Controller_Module
 	{
 		$this	->title($this('delete_image_title'))
 				->subtitle($title)
-				->load->library('form')
+				->form
 				->confirm_deletion($this('delete_confirmation'), $this('delete_image_message', $title));
 				
 		if ($this->form->is_valid())
