@@ -145,6 +145,21 @@ abstract class NeoFrag
 		return $this;
 	}
 
+	public function extension($extension)
+	{
+		if ($this->config->extension_url != $extension)
+		{
+			throw new Exception(NeoFrag::UNFOUND);
+		}
+		
+		if (in_array($this->config->extension_url = $extension, array('json', 'txt', 'xml')))
+		{
+			$this->config->ajax_url = TRUE;
+		}
+
+		return $this;
+	}
+
 	public function add_data($data, $content)
 	{
 		$loader = is_a($this, 'Loader') ? $this : $this->load;
